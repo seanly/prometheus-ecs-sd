@@ -182,7 +182,7 @@ func (d *ecsDiscoverer) getTargets() ([]*targetgroup.Group, error) {
 }
 
 func (d *ecsDiscoverer) Run(ctx context.Context, ch chan<- []*targetgroup.Group) {
-	for c := time.Tick(time.Duration(d.refresh) * time.Second); ; {
+	for c := time.Tick(time.Duration(d.refresh)); ; {
 		tgs, err := d.getTargets()
 		if err == nil {
 			ch <- tgs
